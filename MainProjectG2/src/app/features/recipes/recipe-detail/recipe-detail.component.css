@@ -1,0 +1,14 @@
+/* recipe-detail.component.css */
+.font {
+  font-family: Arial, sans-serif;
+}
+
+.bg-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.glyphicon-font {
+  font-size: 30px;
+}
+

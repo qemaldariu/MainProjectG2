@@ -9,6 +9,7 @@ import {RecipeModel} from "../../../../shared/models/recipe.model";
 export class RecipeItemComponent {
   @Input() recipe!: RecipeModel
   @Output() recipeSelected = new EventEmitter<void>();
+
   onItemClick() {
     this.recipeSelected.emit();
   }

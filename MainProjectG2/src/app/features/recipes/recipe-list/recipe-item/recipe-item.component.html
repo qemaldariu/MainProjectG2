@@ -5,6 +5,9 @@
     <p class="list-group-item-text">{{recipe.description}}</p>
   </div>
   <span class="pull-right">
-        <img [src]="recipe.imgUrl" [alt]="recipe.name" class="img-responsive" style="max-height: 150px;">
+<img [src]="recipe.imgUrl" [alt]="recipe.name"
+     class="img-responsive"
+     style="max-height: 150px;">
   </span>
+  <ng-content></ng-content>
 </a>
