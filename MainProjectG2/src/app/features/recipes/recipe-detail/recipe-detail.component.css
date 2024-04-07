@@ -2,6 +2,7 @@
 .font.bg-info {
   font-family: sans-serif;
   font-size: 30px;
+  margin-top: 20px;
 
 
 }
@@ -18,5 +19,6 @@
 
 img{
   width:450px;
-  padding-left: 50px;
+  margin-left: 20px;
+  border: 5px solid black;
 }
