@@ -1,4 +1,14 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {RecipeModel} from "../../../shared/models/recipe.model";
 
 @Component({
@@ -6,16 +16,20 @@ import {RecipeModel} from "../../../shared/models/recipe.model";
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
-export class RecipeListComponent  implements OnInit {
-
-
+export class RecipeListComponent implements OnInit, OnChanges, AfterViewInit {
+  ngAfterViewInit(): void {
+    console.log('AfterViewInit not implemented.');
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('Method not implemented.');
+  }
   @Output() recipeWasSelected = new EventEmitter<RecipeModel>();
-@ViewChild('inputElement') input:any;
 
-ngOnInit() {
-  console.log('initialized')
-}
+  @ViewChild('inputElement') input!: ElementRef;
 
+  ngOnInit() {
+    console.log('component initialized')
+  }
 
   recipes: RecipeModel[] = [
     {name: 'Recipe One', description: 'Some description for Recipe One', imgUrl: 'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg'},
@@ -26,16 +40,16 @@ ngOnInit() {
         '\n' +
         'Pjekja e mishit e sidmos atij të qingjit është një nga traditat më të hershme dhe të njohura të vendit tonë.',imgUrl:'https://agroweb.org/wp-content/uploads/2019/04/mishmedomateok-1024x576.jpg'}
   ];
-
   onSelected(recipe: RecipeModel) {
     this.recipeWasSelected.emit(recipe)
   }
-//   inputChange(event: any){
-// console.log(event.value)
-//   }
-  add(input:HTMLInputElement){
+  // inputChange(event: any) {
+  //   console.log(event.target.value)
+  // }
+
+  add() {
     // console.log(input.value)
-console.log(this.input.nativeElement.value)
+    console.log(this.input.nativeElement.value)
   }
 
 }

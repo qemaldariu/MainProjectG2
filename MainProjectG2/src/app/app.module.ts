@@ -11,6 +11,12 @@ import {ShoppingEditComponent} from "./features/shopping-list/shopping-edit/shop
 import { RecipeListComponent } from './features/recipes/recipe-list/recipe-list.component';
 import {BasicHighlightDirective} from "./shared/directives/basic-highlight.directive";
 import { BetterHighlightDirective } from './shared/directives/better-highlight.directive';
+import { UnlessDirective } from './shared/directives/unless.directive';
+import {ShortenPipe} from "./shared/Pipes/shorten.pipe";
+import { FilterPipe } from './shared/Pipes/filter.pipe';
+import {FormsModule} from "@angular/forms";
+import {LoggingService} from "./shared/services/logging.service";
+import {AccountsService} from "./shared/services/accounts.service";
 
 @NgModule({
   declarations: [
@@ -23,12 +29,16 @@ import { BetterHighlightDirective } from './shared/directives/better-highlight.d
     ShoppingEditComponent,
     RecipeListComponent,
     BasicHighlightDirective,
-    BetterHighlightDirective
+    BetterHighlightDirective,
+    UnlessDirective,
+    ShortenPipe,
+    FilterPipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [LoggingService, AccountsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

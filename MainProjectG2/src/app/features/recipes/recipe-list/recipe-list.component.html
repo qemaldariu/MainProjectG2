@@ -1,10 +1,9 @@
 <div class="row">
   <div class="col-xs-12">
-<!--    <input class="form-control" (change)="inputChange($event)" >-->
-
+<!--    <input class="form-control" (change)="inputChange($event)">-->
     <input class="form-control" #inputElement>
-    <br><br>
-    <button class="btn btn-success" (click)="add(inputElement)">New Recipe</button>
+    <br>
+    <button class="btn btn-success" (click)="add()">New Recipe</button>
   </div>
 </div>
 <br>
@@ -12,11 +11,12 @@
   <div class="col-xs-12">
     <app-recipe-item
     *ngFor="let recipe of recipes"
-    [recipe]="recipe"
+    [recipe2]="recipe"
     (recipeSelected)="onSelected(recipe)"
     >
-
-
+      <div>
+        <p>this is declared in recipe-list component</p>
+      </div>
     </app-recipe-item>
   </div>
 </div>
