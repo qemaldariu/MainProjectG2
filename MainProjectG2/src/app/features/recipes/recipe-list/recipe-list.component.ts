@@ -1,45 +1,50 @@
 import {
-  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
   OnChanges,
   OnInit,
   Output,
-  SimpleChanges,
   ViewChild
 } from '@angular/core';
 import {RecipeModel} from "../../../shared/models/recipe.model";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
-export class RecipeListComponent implements OnInit, OnChanges, AfterViewInit {
-  ngAfterViewInit(): void {
-    console.log('AfterViewInit not implemented.');
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('Method not implemented.');
-  }
-  @Output() recipeWasSelected = new EventEmitter<RecipeModel>();
+export class RecipeListComponent implements OnInit {
 
+  @Output() recipeWasSelected = new EventEmitter<RecipeModel>();
   @ViewChild('inputElement') input!: ElementRef;
+
+  recipes!: RecipeModel[];
+  url = 'http://localhost:3000/recipes'
+  constructor(
+    private http: HttpClient,
+  ) {
+  }
 
   ngOnInit() {
     console.log('component initialized')
+    this.getRecipes()
   }
 
-  recipes: RecipeModel[] = [
-    {name: 'Recipe One', description: 'Some description for Recipe One', imgUrl: 'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg'},
-    {name: 'Tave dheu', description: 'Nga kuzhinat më të vjetra të shtëpive përdhese, të gatuara në zjarrin e oxhakut e deri sot në restorantet më prestigjiozë, Tava e Dheut vijon të ruajë traditën e shijes së mirë shqiptare.', imgUrl: 'https://agroweb.org/wp-content/uploads/2020/06/tave-dheuuuu-1024x576.jpg'}
-    ,{name:'Mish vici me domate',description:'Përsa i përket mishit të kuq më të preferuarit në kuzhinën shqiptare janë padyshim dy, ai i viçit dhe i qingjit.\n' +
-        '\n' +
-        'Janë dy produkte që gjenden shpesh të përgatitura në mënyra të ndryshme në çdo zonë.\n' +
-        '\n' +
-        'Pjekja e mishit e sidmos atij të qingjit është një nga traditat më të hershme dhe të njohura të vendit tonë.',imgUrl:'https://agroweb.org/wp-content/uploads/2019/04/mishmedomateok-1024x576.jpg'}
-  ];
+
+  getRecipes() {
+    // posts?_page=1&_per_page=25
+    let params = new HttpParams();
+    params = params.append('_page', '2')
+    params = params.append('_per_page', '10')
+    this.http.get<any>(this.url, {
+      params: params
+    }).subscribe( data => {
+      this.recipes = data.data;
+    })
+  }
+
   onSelected(recipe: RecipeModel) {
     this.recipeWasSelected.emit(recipe)
   }

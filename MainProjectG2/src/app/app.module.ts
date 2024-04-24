@@ -17,6 +17,7 @@ import { FilterPipe } from './shared/Pipes/filter.pipe';
 import {FormsModule} from "@angular/forms";
 import {LoggingService} from "./shared/services/logging.service";
 import {AccountsService} from "./shared/services/accounts.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {AccountsService} from "./shared/services/accounts.service";
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [LoggingService, AccountsService],
   bootstrap: [AppComponent]
