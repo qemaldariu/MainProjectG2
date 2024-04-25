@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {RecipeModel} from "../../shared/models/recipe.model";
 import {LoggingService} from "../../shared/services/logging.service";
 import {HttpClient} from "@angular/common/http";
+import {RecipeService} from "../../shared/services/RecipeService";
 
 @Component({
   selector: 'app-recipes',
@@ -17,7 +18,8 @@ export class RecipesComponent {
 
   constructor(
     private logging: LoggingService,
-    private http: HttpClient
+    private http: HttpClient,
+    private recipeService:RecipeService
     ) {
     // console.log('RecipesComponent constructor');
     // console.log(this.logging.getStatus())
@@ -36,15 +38,22 @@ export class RecipesComponent {
   //   })
   // }
 
-  postNewItem() {
-    const newItem = {
-      name: this.name,
-      description: this.desc,
-      imgUrl: this.imgUrl
-    }
-    this.http.post(this.url, newItem).subscribe( data => {
-      console.log(data)
-    })
-  }
 
+  // postNewItem() {
+  //   const newItem = {
+  //     name: this.name,
+  //     description: this.desc,
+  //     imgUrl: this.imgUrl
+  //   }
+  //   this.http.post(this.url, newItem).subscribe( data => {
+  //     console.log(data)
+  //   })
+  // }
+postNewItem(){
+    this.recipeService.postNewItem(this.name,this.desc,this.imgUrl).subscribe(data =>{
+      this.recipeService.reloadData()
+
+  })
+
+}
 }

@@ -1,14 +1,6 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  OnChanges,
-  OnInit,
-  Output,
-  ViewChild
-} from '@angular/core';
-import {RecipeModel} from "../../../shared/models/recipe.model";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { RecipeModel } from '../../../shared/models/recipe.model';
+import {RecipeService} from "../../../shared/services/RecipeService";
 
 @Component({
   selector: 'app-recipe-list',
@@ -16,45 +8,27 @@ import {HttpClient, HttpParams} from "@angular/common/http";
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
-
   @Output() recipeWasSelected = new EventEmitter<RecipeModel>();
-  @ViewChild('inputElement') input!: ElementRef;
+  recipes: RecipeModel[] = [];
 
-  recipes!: RecipeModel[];
-  url = 'http://localhost:3000/recipes'
-  constructor(
-    private http: HttpClient,
-  ) {
-  }
+  constructor(private recipeService: RecipeService) {}
 
   ngOnInit() {
-    console.log('component initialized')
-    this.getRecipes()
+    this.recipeService.data$.subscribe(data => {
+      this.recipes=data;
+    });
+    this.getRecipes();
   }
-
 
   getRecipes() {
-    // posts?_page=1&_per_page=25
-    let params = new HttpParams();
-    params = params.append('_page', '2')
-    params = params.append('_per_page', '10')
-    this.http.get<any>(this.url, {
-      params: params
-    }).subscribe( data => {
-      this.recipes = data.data;
-    })
+    this.recipeService.getRecipes().subscribe(data => {
+      this.recipes = data;
+    });
   }
+
 
   onSelected(recipe: RecipeModel) {
-    this.recipeWasSelected.emit(recipe)
-  }
-  // inputChange(event: any) {
-  //   console.log(event.target.value)
-  // }
-
-  add() {
-    // console.log(input.value)
-    console.log(this.input.nativeElement.value)
+    this.recipeWasSelected.emit(recipe);
   }
 
 }

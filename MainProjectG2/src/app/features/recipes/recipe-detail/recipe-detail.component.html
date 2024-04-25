@@ -1,2 +1,16 @@
-<h1>{{recipeCh.name}}</h1>
-<button type="button" class="btn btn-danger" (click)="deleteItem()">Delete Item</button>
+
+<!--<h1>{{recipeCh.name}}</h1>-->
+<div class="row">
+  <label for="name">Name:</label>
+  <input type="text" id="name" [(ngModel)]="recipeCh.name">
+<br>
+  <label for="desc">Description:</label>
+  <input type="text" id="desc" [(ngModel)]="recipeCh.description">
+<br>
+  <label for="imgUrl">Image URL:</label>
+  <input type="text" id="imgUrl" [(ngModel)]="recipeCh.imgUrl">
+<br>
+  <button type="button" class="btn btn-danger" (click)="deleteItem()">Delete Item</button>
+
+<button type="button" class="btn btn-success" (click)="saveChanges()">Save </button>
+</div>
