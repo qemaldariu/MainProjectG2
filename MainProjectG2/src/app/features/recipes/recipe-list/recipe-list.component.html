@@ -15,11 +15,11 @@
     (recipeSelected)="onSelected(recipe)"
     >
       <div>
-        <p>this is declared in recipe-list component</p>
+<!--        <p>this is declared in recipe-list component</p>-->
       </div>
     </app-recipe-item>
   </div>
-<!--  <button class="btn btn-link" [disabled]="currentPage===1" (click)="prevPage()" >Previous</button>-->
-<!--  <button class="btn btn-link" (click)="nextPage()" >Next</button>-->
+  <button class="btn btn-link" [disabled]="currentPage===1" (click)="backward()" >Previous</button>
+  <button class="btn btn-link" (click)="forward()" >Next</button>
 
 </div>

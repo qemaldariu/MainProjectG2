@@ -9,7 +9,6 @@ import { RecipeService } from "../../../shared/services/RecipeService";
 })
 export class RecipeDetailComponent {
   @Input() recipeCh!: RecipeModel;
-  editMode = false;
 
   constructor(private recipeService: RecipeService) {}
 
@@ -22,7 +21,6 @@ export class RecipeDetailComponent {
   saveChanges() {
     this.recipeService.updateRecipe(this.recipeCh).subscribe(() => {
 
-      this.editMode = false;
       this.recipeService.reloadData();
       alert(`Recipe ${this.recipeCh.name} updated successfully` )
 

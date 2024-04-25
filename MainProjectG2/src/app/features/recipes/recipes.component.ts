@@ -32,23 +32,7 @@ export class RecipesComponent {
 
   recipes!: RecipeModel[]
 
-  // getRecipes() {
-  //   this.http.get<RecipeModel[]>(this.url).subscribe( data => {
-  //     this.recipes = data;
-  //   })
-  // }
 
-
-  // postNewItem() {
-  //   const newItem = {
-  //     name: this.name,
-  //     description: this.desc,
-  //     imgUrl: this.imgUrl
-  //   }
-  //   this.http.post(this.url, newItem).subscribe( data => {
-  //     console.log(data)
-  //   })
-  // }
 postNewItem(){
     this.recipeService.postNewItem(this.name,this.desc,this.imgUrl).subscribe(data =>{
       this.recipeService.reloadData()
