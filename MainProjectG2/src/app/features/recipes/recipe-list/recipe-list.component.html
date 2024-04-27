@@ -12,14 +12,12 @@
     <app-recipe-item
     *ngFor="let recipe of recipes"
     [recipe2]="recipe"
-    (recipeSelected)="onSelected(recipe)"
-    >
+    (recipeSelected)="onSelected(recipe)">
       <div>
-<!--        <p>this is declared in recipe-list component</p>-->
+<!--<p>this is declared in recipe-list component</p>-->
       </div>
     </app-recipe-item>
   </div>
   <button class="btn btn-link" [disabled]="currentPage===1" (click)="backward()" >Previous</button>
   <button class="btn btn-link" (click)="forward()" >Next</button>
-
 </div>

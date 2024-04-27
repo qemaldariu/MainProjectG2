@@ -25,6 +25,7 @@ export class RecipeListComponent implements OnInit {
       this.recipes=data;
     });
     this.getRecipes();
+    this.paginate();
   }
 
   getRecipes() {
@@ -32,19 +33,10 @@ export class RecipeListComponent implements OnInit {
       this.recipes = data;
     });
   }
-  // paginate() {
-  //   // posts?_page=1&_per_page=25
-  //   let params = new HttpParams();
-  //   params = params.append('_page', this.currentPage)
-  //   params = params.append('_per_page', this.itemsPerPage)
-  //   this.recipeService.getRecipes().subscribe(data => {
-  //     this.recipes = data;
-  //   })
-  // }
+
 
 
   paginate() {
-    // posts?_page=1&_per_page=25
     let params = new HttpParams();
     params = params.append('_page', this.currentPage)
     params = params.append('_per_page', this.itemsPerPage)
