@@ -18,6 +18,7 @@ import {FormsModule} from "@angular/forms";
 import {LoggingService} from "./shared/services/logging.service";
 import {AccountsService} from "./shared/services/accounts.service";
 import {HttpClientModule} from "@angular/common/http";
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
   declarations: [
@@ -35,11 +36,12 @@ import {HttpClientModule} from "@angular/common/http";
     ShortenPipe,
     FilterPipe
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        ButtonModule
+    ],
   providers: [LoggingService, AccountsService],
   bootstrap: [AppComponent]
 })

@@ -8,6 +8,8 @@ import { RecipeService } from "../../../shared/services/RecipeService";
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent {
+  alert:boolean=false;
+
   @Input() recipeCh!: RecipeModel;
 
   constructor(private recipeService: RecipeService) {}
@@ -22,8 +24,10 @@ export class RecipeDetailComponent {
     this.recipeService.updateRecipe(this.recipeCh).subscribe(() => {
 
       this.recipeService.reloadData();
-      alert(`Recipe ${this.recipeCh.name} updated successfully` )
-
+      this.alert=true;
     });
+  }
+  closeAlert(){
+    this.alert=false;
   }
 }
